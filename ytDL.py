@@ -10,6 +10,7 @@ if ("youtube.com" not in videoURL):
 yt = YouTube(videoURL,use_oauth=True,allow_oauth_cache=True)
 filename = yt.title.replace(" ","_")
 print("Downloading YouTube File: " + yt.title)
+# Use a different filename for files because moviepy breaks when writing into the same filename
 yt.streams.order_by("resolution").desc().first().download(filename=filename + "v.mp4")
 yt.streams.filter(only_audio=True).first().download(filename=filename + "a.mp3")
 
